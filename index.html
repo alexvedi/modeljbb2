@@ -39,14 +39,12 @@
 
     <!-- Script para reproducir el audio -->
     <script>
-      const playButton = document.getElementById('play-audio');
-      const audio = document.getElementById('audio-player');
-
-      playButton.addEventListener('click', () => {
-        audio.play().catch(err => {
-          console.warn('Audio play was prevented:', err);
-        });
-      });
+      document.getElementById('play-audio').addEventListener('click', () => {
+  const audio = document.getElementById('audio-player');
+  audio.play().catch(err => {
+    console.warn('El navegador bloqueó la reproducción:', err);
+  });
+});
     </script>
       
   </body>
