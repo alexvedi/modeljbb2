@@ -43,7 +43,9 @@
       const audio = document.getElementById('audio-player');
 
       playButton.addEventListener('click', () => {
-        audio.play();
+        audio.play().catch(err => {
+          console.warn('Audio play was prevented:', err);
+        });
       });
     </script>
       
