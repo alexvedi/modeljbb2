@@ -20,8 +20,32 @@
           <img src="ar_hand_prompt.png">
       </div>
     </model-viewer>  
+
+    <!-- Botón con ícono SVG -->
+<button id="play-audio">
+  <!-- Ícono SVG de Play -->
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M8 5v14l11-7L8 5z"/>
+  </svg>
+  Reproducir audio
+</button>
+    <!-- Audio que se reproducirá -->
+    <audio id="audio-player" src="tucan-Audio.mp3"></audio>
+
     <script src="script.js"></script>
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+
+
+    <!-- Script para reproducir el audio -->
+    <script>
+      const playButton = document.getElementById('play-audio');
+      const audio = document.getElementById('audio-player');
+
+      playButton.addEventListener('click', () => {
+        audio.play();
+      });
+    </script>
+      
   </body>
 </html>
