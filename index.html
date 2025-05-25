@@ -21,16 +21,20 @@
       </div>
     </model-viewer>  
 
-    <!-- Botón con ícono SVG -->
-<button id="play-audio">
-  <!-- Ícono SVG de Play -->
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 5v14l11-7L8 5z"/>
-  </svg>
-  Reproducir audio
-</button>
+    <!-- Botón con SVG dinámico -->
+    <button id="toggle-audio">
+      <!-- Ícono de Play (por defecto) -->
+     <svg id="icon-play" viewBox="0 0 24 24">
+     <path d="M8 5v14l11-7z"/>
+     </svg>
+     <svg id="icon-pause" viewBox="0 0 24 24" style="display: none;">
+     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+     </svg>
+     Audio
+    </button>
     <!-- Audio que se reproducirá -->
     <audio id="audio-player" src="tucan-audio.mp3" preload="auto"></audio>
+    
 
     <script src="script.js"></script>
     <!-- Loads <model-viewer> for browsers: -->
@@ -39,13 +43,38 @@
 
     <!-- Script para reproducir el audio -->
     <script>
-      const playButton = document.getElementById('play-audio');
-      const audio = document.getElementById('audio-player');
+    const button = document.getElementById('toggle-audio');
+    const audio = document.getElementById('audio-player');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
 
-      playButton.addEventListener('click', () => {
-        audio.play();
-      });
-    </script>
+    button.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().then(() => {
+          iconPlay.style.display = 'none';
+          iconPause.style.display = 'inline';
+        }).catch(error => {
+          alert("El navegador bloqueó la reproducción. Toca el botón directamente.");
+          console.error("Audio play error:", error);
+        });
+      } else {
+        audio.pause();
+        iconPause.style.display = 'none';
+        iconPlay.style.display = 'inline';
+      }
+    });
+
+    // Si el usuario pausa desde controles externos, se actualiza el icono
+    audio.addEventListener('pause', () => {
+      iconPause.style.display = 'none';
+      iconPlay.style.display = 'inline';
+    });
+
+    audio.addEventListener('play', () => {
+      iconPlay.style.display = 'none';
+      iconPause.style.display = 'inline';
+    });
+  </script>
       
   </body>
 </html>
