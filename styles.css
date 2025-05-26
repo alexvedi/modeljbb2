@@ -131,12 +131,11 @@ model-viewer>#ar-prompt>img {
   align-items: center;
   justify-content: center;
   gap: 0.5em;
-  border-radius: 15px;
   cursor: pointer;
 
   background-color: #fff;
   white-space: nowrap;
-  padding: 0px 16px 0px 40px;
+  padding: 0px 16px 0px 10px;
   font-family: Roboto Regular, Helvetica Neue, sans-serif;
   font-size: 14px;
   color: #4285f4;
