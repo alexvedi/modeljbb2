@@ -24,62 +24,12 @@
       <div id="ar-prompt">
           <img src="ar_hand_prompt.png">
       </div>
-    </model-viewer>  
-
-    <!-- Botón con SVG dinámico -->
-    <button id="toggle-audio">
-      <!-- Ícono de Play (por defecto) -->
-     <svg id="icon-play" viewBox="0 0 24 24">
-     <path d="M8 5v14l11-7z"/>
-     </svg>
-     <svg id="icon-pause" viewBox="0 0 24 24" style="display: none;">
-     <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-     </svg>
-     Reproducir audio
-    </button>
-    <!-- Audio que se reproducirá -->
-    <audio id="audio-player" src="pirarucu-audio.mp3" preload="auto"></audio>
+    </model-viewer> 
 
 
     <script src="script.js"></script>
     <!-- Loads <model-viewer> for browsers: -->
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
-
-
-    <!-- Script para reproducir el audio -->
-    <script>
-    const button = document.getElementById('toggle-audio');
-    const audio = document.getElementById('audio-player');
-    const iconPlay = document.getElementById('icon-play');
-    const iconPause = document.getElementById('icon-pause');
-
-    button.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play().then(() => {
-          iconPlay.style.display = 'none';
-          iconPause.style.display = 'inline';
-        }).catch(error => {
-          alert("El navegador bloqueó la reproducción. Toca el botón directamente.");
-          console.error("Audio play error:", error);
-        });
-      } else {
-        audio.pause();
-        iconPause.style.display = 'none';
-        iconPlay.style.display = 'inline';
-      }
-    });
-
-    // Si el usuario pausa desde controles externos, se actualiza el icono
-    audio.addEventListener('pause', () => {
-      iconPause.style.display = 'none';
-      iconPlay.style.display = 'inline';
-    });
-
-    audio.addEventListener('play', () => {
-      iconPlay.style.display = 'none';
-      iconPause.style.display = 'inline';
-    });
-  </script>
       
   </body>
 </html>
